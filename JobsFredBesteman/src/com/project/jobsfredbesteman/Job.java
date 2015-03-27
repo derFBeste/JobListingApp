@@ -12,7 +12,11 @@ public class Job {
 		this.contact = contact;
 		this.title = title;
 	}
-
+	
+	@Override
+	public String toString(){
+		return String.format("%s - %s %n %s", company, contact, title);
+	}
 
 	public String getCompany() {
 		return company;

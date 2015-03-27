@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class JobsFredBestemanActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jobs_fred_besteman);
+		ShareData.get().restore(getApplicationContext()); //calls restore to get data stored on disk
 		
 		listView = (ListView) findViewById(R.id.jobList);
 		
@@ -33,19 +35,26 @@ public class JobsFredBestemanActivity extends Activity {
 		jobList.add(job1);
 		jobList.add(job2);
 		
-		adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, jobList);	
+		adapter = new ArrayAdapter<Job>(this, android.R.layout.simple_list_item_1, jobList);	
 		listView.setAdapter(adapter);
 		
 		listView.setOnItemClickListener(new OnItemClickListener(){
+
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View v, int position,
-					long id) {
-				Job j = (Job) adapter.getItem(position);
-				Toast.makeText(getApplicationContext(), position + ": "+ j, Toast.LENGTH_LONG).show();			
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Job job = (Job) adapter.getItem(position);
+				String s = job.toString();
+				Toast.makeText(getApplicationContext(), "Clicked!", Toast.LENGTH_LONG).show();
 			}
 			
 		});
 		
+	}
+	@Override
+	public void onPause(){
+		super.onPause();
+		ShareData.get().save(getApplicationContext());
 	}
 	
 	@Override
