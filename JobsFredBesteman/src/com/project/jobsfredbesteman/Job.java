@@ -3,25 +3,24 @@ package com.project.jobsfredbesteman;
 public class Job {
 	private String company;
 	private String contact;
-	private String title;
+	private String position;
 	
 	
 	public Job(String company, String contact, String title){
 		super();
 		this.company = company;
 		this.contact = contact;
-		this.title = title;
+		this.position = title;
 	}
 	
 	@Override
 	public String toString(){
-		return String.format("%s - %s %n %s", company, contact, title);
+		return String.format("%s - %s %n %s", company, contact, position);
 	}
 
 	public String getCompany() {
 		return company;
 	}
-
 
 	public void setCompany(String company) {
 		this.company = company;
@@ -38,13 +37,13 @@ public class Job {
 	}
 
 
-	public String getTitle() {
-		return title;
+	public String getPosition() {
+		return position;
 	}
 
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 	
 
