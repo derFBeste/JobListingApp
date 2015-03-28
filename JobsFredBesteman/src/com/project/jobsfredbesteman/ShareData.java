@@ -31,13 +31,13 @@ public class ShareData {
 	private ShareData(){
 		jobList = new ArrayList<Job>();
 		
-		Job job1 = new Job("ACME", "DAVE", "Head Honcho");
-		Job job2 = new Job("MMMM", "Jojo", "Numero Uno");
-		Job job3 = new Job("IncInc", "Bruce", "Overlord");
-		
-		jobList.add(job1);
-		jobList.add(job2);
-		jobList.add(job3);
+//		Job job1 = new Job("ACME", "DAVE", "Head Honcho");
+//		Job job2 = new Job("M & M & M & N CO.", "Jojo", "Numero Uno");
+//		Job job3 = new Job("IncInc", "Bruce", "Overlord");
+//		
+//		jobList.add(job1);
+//		jobList.add(job2);
+//		jobList.add(job3);
 	}
 	
 	public static ShareData get(){

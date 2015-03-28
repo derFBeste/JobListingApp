@@ -1,10 +1,14 @@
 package com.project.jobsfredbesteman;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,12 +16,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-public class DetailsActivity extends Activity implements OnEditorActionListener
+public class DetailsActivity extends Activity
 {
-
+	private final String TAG = "**********************";
+	
 	EditText companyEditText;
 	EditText contactEditText;
 	EditText positionEditText;
+	
+	ArrayList<Job> list = ShareData.get().getJobList();
+	Job jobSelected;
 
 	String company;
 	String contact;
@@ -34,29 +42,44 @@ public class DetailsActivity extends Activity implements OnEditorActionListener
 		positionEditText = (EditText) findViewById(R.id.inputPostion);
 		
 		Intent intent = getIntent();		
-		company = intent.getStringExtra("company");
-		contact = intent.getStringExtra("contact");
-		position = intent.getStringExtra("position");
 		index = intent.getIntExtra("index", 0);
-						
-		companyEditText.setText(company);
-		contactEditText.setText(contact);
-		positionEditText.setText(position);
+		Log.d(TAG, "array index: " + index);
+
+		jobSelected = list.get(index);
+					
+		Log.d(TAG, "job selected: " + jobSelected);
+		companyEditText.setText(jobSelected.getCompany());
+		contactEditText.setText(jobSelected.getContact());
+		positionEditText.setText(jobSelected.getPosition());
 		
-		companyEditText.setOnEditorActionListener(this);
-		contactEditText.setOnEditorActionListener(this);
-		positionEditText.setOnEditorActionListener(this);
+		companyEditText.addTextChangedListener(new MyTextWatcher());
+		contactEditText.addTextChangedListener(new MyTextWatcher());
+		positionEditText.addTextChangedListener(new MyTextWatcher());
 	}
 
-
-	@Override
-	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		//make toast here to see if the index is correct, if so rework intent between mainActivity and here
+class MyTextWatcher implements TextWatcher{	
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			// TODO Auto-generated method stub
 			
-		
-		
-		return false;
-	}
+		}
 	
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			Log.d(TAG, "In Text Change Listener");
+			
+			jobSelected.setCompany(companyEditText.getText().toString());
+			jobSelected.setContact(contactEditText.getText().toString());
+			jobSelected.setPosition(positionEditText.getText().toString());
+		}
+			
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+
 	
 }

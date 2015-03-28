@@ -42,22 +42,6 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 		adapter = new ArrayAdapter<Job>(this, android.R.layout.simple_list_item_1, list);	
 		listView.setAdapter(adapter);
 		
-//		listView.setOnItemClickListener(new OnItemClickListener(){
-//
-//			@Override
-//			public void onItemClick(AdapterView<?> parent, View view,
-//					int position, long id) {
-//				Job job = (Job) adapter.getItem(position);
-//				//String s = job.toString();
-//				Intent intent = new Intent();
-//				
-//				
-//				startActivity(new Intent(getApplicationContext(), DetailsActivity.class));
-//				//Toast.makeText(getApplicationContext(), "Clicked!", Toast.LENGTH_LONG).show();
-//			}		
-//		});
-		
-		
 	}//end onCreate
 
 	@Override
@@ -69,9 +53,6 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 		
 		//intent code is used to pass information to DetailsActivity
 		Intent intent = new Intent(this, DetailsActivity.class);
-		intent.putExtra("company", job.getCompany());
-		intent.putExtra("contact", job.getContact());
-		intent.putExtra("position", job.getPosition());
 		intent.putExtra("index", index);
 		this.startActivity(intent);
 		
@@ -82,6 +63,12 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 	public void onPause(){
 		super.onPause();
 		ShareData.get().save(getApplicationContext());
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		adapter.notifyDataSetChanged();
 	}
 	
 	@Override
@@ -97,7 +84,7 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 			startActivity(new Intent(getApplicationContext(), AboutActivity.class));
 			return true;
 		case R.id.add:
-			startActivity(new Intent(getApplicationContext(), DetailsActivity.class));
+			startActivity(new Intent(getApplicationContext(), AddActivity.class));
 		default:
 			return super.onOptionsItemSelected(item);
 		}
