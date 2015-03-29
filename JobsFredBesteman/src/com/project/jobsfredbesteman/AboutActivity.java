@@ -1,3 +1,12 @@
+/*Fred Besteman
+ * CIS 2818
+ * Alan Jackson
+ * Application 4: JobsYourName
+ * 
+ * AboutActivity.java
+ */
+
+
 package com.project.jobsfredbesteman;
 
 import android.app.Activity;

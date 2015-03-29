@@ -1,6 +1,10 @@
-/*
+/*Fred Besteman
+ * CIS 2818
+ * Alan Jackson
+ * Application 4: JobsYourName
  * 
- * singleton
+ * ShareData.java
+ * Singleton class used to share data between activities.
  */
 
 
@@ -19,7 +23,7 @@ import android.util.Log;
 
 public class ShareData {
 	public static final String filename = "my_data.dat";
-	private static final String TAG = "*** YOUR TAG ***";
+	private static final String TAG = "****************";
 	
 	
 	private static ShareData sData;
@@ -30,14 +34,6 @@ public class ShareData {
 	
 	private ShareData(){
 		jobList = new ArrayList<Job>();
-		
-//		Job job1 = new Job("ACME", "DAVE", "Head Honcho");
-//		Job job2 = new Job("M & M & M & N CO.", "Jojo", "Numero Uno");
-//		Job job3 = new Job("IncInc", "Bruce", "Overlord");
-//		
-//		jobList.add(job1);
-//		jobList.add(job2);
-//		jobList.add(job3);
 	}
 	
 	public static ShareData get(){
@@ -47,12 +43,6 @@ public class ShareData {
 		return sData;
 	}
 	
-//	public int getIndex(ArrayList<Job> jobList){
-//		int index = jobList.indexOf(jobList);
-//		
-//		return index;
-//	}
-	
 	public void setJob(Job job){
 		this.job = job;
 	}
@@ -60,9 +50,6 @@ public class ShareData {
 	public Job getJob(){
 		return job;
 	}
-//	public void setPosition(String p){
-//		job = getJob();
-//	}
 	
 	public ArrayList<Job> getJobList(){
 		return jobList;

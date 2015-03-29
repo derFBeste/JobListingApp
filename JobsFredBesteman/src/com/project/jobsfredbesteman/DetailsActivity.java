@@ -1,3 +1,14 @@
+/*Fred Besteman
+ * CIS 2818
+ * Alan Jackson
+ * Application 4: JobsYourName
+ * 
+ * DetailsActivity.java
+ * Provides details about a job and allows users to edit that job.
+ */
+
+
+
 package com.project.jobsfredbesteman;
 
 import java.io.Serializable;

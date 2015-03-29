@@ -1,3 +1,12 @@
+/*Fred Besteman
+ * CIS 2818
+ * Alan Jackson
+ * Application 4: JobsYourName
+ * 
+ * Job.java
+ * This contains the model code to define jobs.
+ */
+
 package com.project.jobsfredbesteman;
 
 public class Job {

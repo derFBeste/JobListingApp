@@ -1,3 +1,13 @@
+/*Fred Besteman
+ * CIS 2818
+ * Alan Jackson
+ * Application 4: JobsYourName
+ * 
+ * JobsFredBestemanActivity.java
+ * This is the main activity for the application.
+ */
+
+
 package com.project.jobsfredbesteman;
 
 import java.util.ArrayList;
@@ -5,6 +15,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -15,7 +26,6 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class JobsFredBestemanActivity extends Activity implements OnItemClickListener{
 	
@@ -27,17 +37,15 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_jobs_fred_besteman);
-
 		
 		ShareData.get().restore(getApplicationContext()); //calls restore to get data stored on disk
-		
-		
+				
 		listView = (ListView) findViewById(R.id.jobList);
 		registerForContextMenu(listView);
 		
 		listView.setOnItemClickListener(this);
-
 		
 		adapter = new ArrayAdapter<Job>(this, android.R.layout.simple_list_item_1, list);	
 		listView.setAdapter(adapter);
@@ -49,6 +57,7 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 			long id) {
 		Job job = (Job) adapter.getItem(position);
 		
+		//stores the index of the job for use in DetailsActivity
 		int index = adapter.getPosition(job);
 		
 		//intent code is used to pass information to DetailsActivity
@@ -62,7 +71,9 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 	@Override
 	public void onPause(){
 		super.onPause();
+		Log.d("Yo!", "in onPause");
 		ShareData.get().save(getApplicationContext());
+		Log.d("There!", "in onPause");
 	}
 	
 	@Override
@@ -77,6 +88,7 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 		return true;
 	}
 	
+	//The following code act as a controller for the options menu.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
