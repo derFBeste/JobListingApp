@@ -52,12 +52,15 @@ public class DetailsActivity extends Activity
 		contactEditText = (EditText) findViewById(R.id.inputContact);
 		positionEditText = (EditText) findViewById(R.id.inputPostion);
 		
-		Intent intent = getIntent();		
+		Intent intent = getIntent();
+		//Gets the index that was saved in JobsFredBestemanActivity.
 		index = intent.getIntExtra("index", 0);
 		Log.d(TAG, "array index: " + index);
-
+		
+		//Selects the job from the ArrayList and assigns it to a variable.
 		jobSelected = list.get(index);
-					
+		
+		//Sets new values to the object if values are changed.
 		Log.d(TAG, "job selected: " + jobSelected);
 		companyEditText.setText(jobSelected.getCompany());
 		contactEditText.setText(jobSelected.getContact());

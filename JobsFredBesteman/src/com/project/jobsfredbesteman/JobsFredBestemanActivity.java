@@ -33,6 +33,9 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 	
 	ArrayList<Job> list = ShareData.get().getJobList();
 	ArrayAdapter<Job> adapter;
+	
+	private final String TAG = "**********************";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +74,9 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 	@Override
 	public void onPause(){
 		super.onPause();
-		Log.d("Yo!", "in onPause");
+		Log.d(TAG, "in onPause");
 		ShareData.get().save(getApplicationContext());
-		Log.d("There!", "in onPause");
+		Log.d(TAG, "in onPause");
 	}
 	
 	@Override
@@ -122,6 +125,5 @@ public class JobsFredBestemanActivity extends Activity implements OnItemClickLis
 		
 		return super.onContextItemSelected(item);
 	}
-
 
 }
